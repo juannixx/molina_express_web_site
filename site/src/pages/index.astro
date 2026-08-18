@@ -7,6 +7,7 @@ import HowItWorks from "../components/sections/HowItWorks.astro";
 import Tracking from "../components/sections/Tracking.astro";
 import Cases from "../components/sections/Cases.astro";
 import Sectors from "../components/sections/Sectors.astro";
+import FulfilmentBand from "../components/sections/FulfilmentBand.astro";
 import LeadForm from "../components/LeadForm.astro";
 import { site } from "../content/site";
 
@@ -39,5 +40,6 @@ const jsonLd = {
   <Tracking />
   <Cases />
   <Sectors />
+  <FulfilmentBand />
   <LeadForm kind="quote" anchor="quote" config={site.quoteForm} />
 </Base>

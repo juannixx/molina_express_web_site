@@ -7,7 +7,7 @@ function trackConsoleErrors(page: Page): string[] {
   return errors;
 }
 
-for (const path of ["/", "/drivers", "/thanks"]) {
+for (const path of ["/", "/drivers", "/fulfilment", "/thanks"]) {
   test(`${path} renders without console errors`, async ({ page }) => {
     const errors = trackConsoleErrors(page);
     await page.goto(path);
@@ -51,5 +51,22 @@ test("driver form reaches /thanks", async ({ page }) => {
   await form.locator('[name="preferred_area"]').selectOption("Suffolk");
   await form.locator('[name="availability"]').fill("5");
   await form.getByRole("button", { name: "Send application" }).click();
+  await page.waitForURL("**/thanks");
+});
+
+test("fulfilment form reaches /thanks", async ({ page }) => {
+  await page.goto("/fulfilment");
+  const form = page.locator('[data-lead-form][data-kind="fulfilment"]');
+  await form.scrollIntoViewIfNeeded();
+  await form.locator('[name="name"]').fill("Test Buyer");
+  await form.locator('[name="company"]').fill("Brand Co");
+  await form.locator('[name="email"]').fill("ops@example.com");
+  await form.locator('[name="phone"]').fill("07911123456");
+  await form.getByRole("button", { name: "Continue" }).click();
+  await form.locator('[name="pallets"]').fill("60");
+  await form.locator('[name="orders_month"]').fill("2000");
+  await form.locator('[name="items_per_order"]').fill("1.4");
+  await form.locator('[name="channels"]').selectOption("Shopify");
+  await form.getByRole("button", { name: "Request fulfilment quote" }).click();
   await page.waitForURL("**/thanks");
 });
