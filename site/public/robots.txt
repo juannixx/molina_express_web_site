@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://mexpress.uk.com/sitemap-index.xml

@@ -1,0 +1,68 @@
+---
+import Base from "../layouts/Base.astro";
+import LeadForm from "../components/LeadForm.astro";
+import Icon from "../components/Icon.astro";
+import { site } from "../content/site";
+const d = site.drivers;
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "JobPosting",
+  title: "Delivery Driver (self-employed)",
+  hiringOrganization: { "@type": "Organization", name: site.company.legalName },
+  jobLocation: {
+    "@type": "Place",
+    address: { "@type": "PostalAddress", addressLocality: site.company.address.city, addressCountry: "GB" },
+  },
+  employmentType: "CONTRACTOR",
+  description: d.hero.subtitle,
+};
+---
+
+<Base title={site.seo.drivers.title} description={site.seo.drivers.description} jsonLd={jsonLd}>
+  <section class="bg-brand text-white">
+    <div class="mx-auto grid max-w-6xl items-center gap-10 px-4 py-16 md:grid-cols-2 md:py-24">
+      <div>
+        <h1 data-hero-seq class="display-expanded text-[clamp(2rem,6vw,4.5rem)] leading-[1.05]">{d.hero.title}</h1>
+        <p data-hero-seq class="mt-5 max-w-[60ch] text-lg opacity-95">{d.hero.subtitle}</p>
+        <a data-hero-seq href={d.hero.cta.href} class="mt-8 inline-block rounded-card bg-signal px-6 py-3 font-semibold text-ink">
+          {d.hero.cta.label}
+        </a>
+      </div>
+      <img data-hero-seq src={d.hero.image.src} alt={d.hero.image.alt} width="1600" height="1000" class="rounded-card" fetchpriority="high" />
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-3xl px-4 py-20">
+    <h2 class="display-expanded text-3xl md:text-4xl">{d.story.title}</h2>
+    <p class="mt-4 text-lg leading-relaxed text-ink">{d.story.body}</p>
+  </section>
+
+  <section class="bg-surface py-20">
+    <div class="mx-auto grid max-w-6xl gap-12 px-4 md:grid-cols-2">
+      <div>
+        <h2 class="display-expanded text-2xl md:text-3xl">{d.benefits.title}</h2>
+        <ul class="mt-6 space-y-3">
+          {d.benefits.items.map((item) => (
+            <li class="flex items-start gap-3">
+              <Icon name="label" class="mt-0.5 shrink-0 text-brand" />
+              <span class="text-ink">{item}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div>
+        <h2 class="display-expanded text-2xl md:text-3xl">{d.expectations.title}</h2>
+        <ul class="mt-6 space-y-3">
+          {d.expectations.items.map((item) => (
+            <li class="flex items-start gap-3">
+              <Icon name="route" class="mt-0.5 shrink-0 text-brand" />
+              <span class="text-ink">{item}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <LeadForm kind="driver" anchor="apply" config={site.driverForm} />
+</Base>

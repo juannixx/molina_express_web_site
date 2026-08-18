@@ -1,0 +1,45 @@
+---
+import Base from "../layouts/Base.astro";
+import Hero from "../components/sections/Hero.astro";
+import ProofBand from "../components/sections/ProofBand.astro";
+import Services from "../components/sections/Services.astro";
+import HowItWorks from "../components/sections/HowItWorks.astro";
+import Tracking from "../components/sections/Tracking.astro";
+import Cases from "../components/sections/Cases.astro";
+import Sectors from "../components/sections/Sectors.astro";
+import FulfilmentBand from "../components/sections/FulfilmentBand.astro";
+import LeadForm from "../components/LeadForm.astro";
+import { site } from "../content/site";
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  name: site.company.legalName,
+  url: site.company.url,
+  email: site.company.email,
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: site.company.address.street,
+    addressLocality: site.company.address.city,
+    postalCode: site.company.address.postcode,
+    addressCountry: site.company.address.country,
+  },
+  areaServed: site.company.coverage,
+  makesOffer: site.services.items.map((s) => ({
+    "@type": "Offer",
+    itemOffered: { "@type": "Service", name: s.name, description: s.useCase },
+  })),
+};
+---
+
+<Base title={site.seo.home.title} description={site.seo.home.description} jsonLd={jsonLd}>
+  <Hero />
+  <ProofBand />
+  <Services />
+  <HowItWorks />
+  <Tracking />
+  <Cases />
+  <Sectors />
+  <FulfilmentBand />
+  <LeadForm kind="quote" anchor="quote" config={site.quoteForm} />
+</Base>

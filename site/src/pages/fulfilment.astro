@@ -1,0 +1,70 @@
+---
+import Base from "../layouts/Base.astro";
+import LeadForm from "../components/LeadForm.astro";
+import Icon from "../components/Icon.astro";
+import RouteLine from "../components/RouteLine.astro";
+import { site } from "../content/site";
+const f = site.fulfilment;
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  serviceType: "Third-party logistics (3PL) and e-commerce fulfilment",
+  provider: { "@type": "Organization", name: site.company.legalName, url: site.company.url },
+  areaServed: "GB",
+  description: site.seo.fulfilment.description,
+};
+---
+
+<Base title={site.seo.fulfilment.title} description={site.seo.fulfilment.description} jsonLd={jsonLd}>
+  <section class="bg-brand text-white">
+    <div class="mx-auto grid max-w-6xl items-center gap-10 px-4 py-16 md:grid-cols-2 md:py-24">
+      <div>
+        <h1 data-hero-seq class="display-expanded text-[clamp(2rem,6vw,4.5rem)] leading-[1.05]">{f.hero.title}</h1>
+        <p data-hero-seq class="mt-5 max-w-[60ch] text-lg opacity-95">{f.hero.subtitle}</p>
+        <a data-hero-seq href={f.hero.cta.href} class="mt-8 inline-block rounded-card bg-signal px-6 py-3 font-semibold text-ink">
+          {f.hero.cta.label}
+        </a>
+      </div>
+      <img data-hero-seq src={f.hero.image.src} alt={f.hero.image.alt} width="1600" height="1000" class="rounded-card" fetchpriority="high" />
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-6xl px-4 py-20">
+    <h2 class="display-expanded text-3xl md:text-4xl">{f.services.title}</h2>
+    <dl class="mt-10 grid gap-x-10 gap-y-6 md:grid-cols-3">
+      {f.services.items.map((s) => (
+        <div class="border-t border-surface pt-4">
+          <dt class="font-display text-lg font-bold">{s.name}</dt>
+          <dd class="mt-1 text-ink">{s.detail}</dd>
+        </div>
+      ))}
+    </dl>
+  </section>
+
+  <section class="bg-surface py-20">
+    <div class="mx-auto max-w-6xl px-4">
+      <h2 class="display-expanded text-3xl md:text-4xl">{f.capacity.title}</h2>
+      <p class="mt-4 max-w-[65ch] text-lg text-ink">{f.capacity.body}</p>
+      <RouteLine class="mt-8 h-16 w-full text-brand" />
+      <ul class="mt-6 flex flex-wrap gap-x-10 gap-y-3">
+        {f.capacity.points.map((p) => (
+          <li class="display-expanded tabular border-b-2 border-signal pb-1 text-xl text-brand">{p}</li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-6xl px-4 py-20">
+    <h2 class="display-expanded text-3xl md:text-4xl">{f.audience.title}</h2>
+    <ul class="mt-8 grid gap-4 md:grid-cols-2">
+      {f.audience.items.map((item) => (
+        <li class="flex items-start gap-3">
+          <Icon name="map" class="mt-0.5 shrink-0 text-brand" />
+          <span class="text-lg text-ink">{item}</span>
+        </li>
+      ))}
+    </ul>
+  </section>
+
+  <LeadForm kind="fulfilment" anchor="fulfilment-quote" config={site.fulfilmentForm} />
+</Base>
