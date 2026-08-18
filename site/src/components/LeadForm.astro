@@ -43,7 +43,7 @@ const { kind, anchor, config } = Astro.props;
                   aria-describedby={`${kind}-${f.name}-error`}
                 />
               )}
-              <p id={`${kind}-${f.name}-error`} data-error-for={f.name} class="mt-1 hidden text-sm font-semibold text-red-700"></p>
+              <p id={`${kind}-${f.name}-error`} data-error-for={f.name} role="alert" class="mt-1 hidden text-sm font-semibold text-red-700"></p>
             </div>
           ))}
         </fieldset>

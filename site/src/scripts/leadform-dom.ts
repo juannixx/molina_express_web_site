@@ -33,17 +33,31 @@ for (const form of document.querySelectorAll<HTMLFormElement>("[data-lead-form]"
       const msg = errors[p.dataset.errorFor!];
       p.textContent = msg ?? "";
       p.classList.toggle("hidden", !msg);
+      const field = form.querySelector<HTMLElement>(`[name="${p.dataset.errorFor}"]`);
+      if (field) {
+        if (msg) field.setAttribute("aria-invalid", "true");
+        else field.removeAttribute("aria-invalid");
+      }
     }
+  }
+
+  function focusFirstError() {
+    const { errors } = stepper.getState();
     const firstError = Object.keys(errors)[0];
     if (firstError) form.querySelector<HTMLElement>(`[name="${firstError}"]`)?.focus();
   }
 
   backBtn.addEventListener("click", () => { stepper.back(); render(); });
-  nextBtn.addEventListener("click", () => { stepper.next(); render(); });
+  nextBtn.addEventListener("click", () => {
+    stepper.next();
+    render();
+    focusFirstError();
+  });
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
     await stepper.submit();
     render();
     if (stepper.getState().status === "done") window.location.href = "/thanks";
+    else focusFirstError();
   });
 }
