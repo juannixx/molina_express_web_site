@@ -7,6 +7,7 @@ import HowItWorks from "../components/sections/HowItWorks.astro";
 import Tracking from "../components/sections/Tracking.astro";
 import Cases from "../components/sections/Cases.astro";
 import Sectors from "../components/sections/Sectors.astro";
+import LeadForm from "../components/LeadForm.astro";
 import { site } from "../content/site";
 ---
 
@@ -18,4 +19,5 @@ import { site } from "../content/site";
   <Tracking />
   <Cases />
   <Sectors />
+  <LeadForm kind="quote" anchor="quote" config={site.quoteForm} />
 </Base>
