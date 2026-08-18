@@ -17,4 +17,8 @@ describe("scanText", () => {
   it("does not match the word TODO without underscore", () => {
     expect(scanText("// TODO fix later")).toEqual([]);
   });
+
+  it("catches a bare TODO_ marker with nothing after it", () => {
+    expect(scanText('a: "TODO_"')).toEqual([{ line: 1, match: "TODO_" }]);
+  });
 });

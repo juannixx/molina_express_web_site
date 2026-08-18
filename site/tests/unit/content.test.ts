@@ -23,6 +23,13 @@ describe("site content", () => {
     expect(site.fulfilment.audience.items.length).toBeGreaterThanOrEqual(4);
   });
 
+  it("has the fulfilment band copy", () => {
+    expect(site.fulfilmentBand.title.length).toBeGreaterThan(0);
+    expect(site.fulfilmentBand.body.length).toBeGreaterThan(0);
+    expect(site.fulfilmentBand.ctaLabel).toBe("See fulfilment");
+    expect(site.fulfilmentBand.ctaHref).toBe("/fulfilment");
+  });
+
   it("uses no banned copy words", () => {
     const text = JSON.stringify(site).toLowerCase();
     for (const banned of ["solutions", "innovative", "revolutioniz", "excellence"]) {

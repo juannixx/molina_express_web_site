@@ -70,3 +70,34 @@ test("fulfilment form reaches /thanks", async ({ page }) => {
   await form.getByRole("button", { name: "Request fulfilment quote" }).click();
   await page.waitForURL("**/thanks");
 });
+
+test("mobile menu opens and closes at 375px", async ({ page }) => {
+  await page.setViewportSize({ width: 375, height: 812 });
+  await page.goto("/");
+
+  const nav = page.getByRole("navigation", { name: "Main" });
+  const menuToggle = nav.getByText("Menu", { exact: true });
+  await expect(menuToggle).toBeVisible();
+
+  const mobileLinks = nav.locator("details ul a");
+  const firstMobileLink = mobileLinks.first();
+  await expect(firstMobileLink).not.toBeVisible();
+
+  await menuToggle.click();
+  await expect(firstMobileLink).toBeVisible();
+
+  await menuToggle.click();
+  await expect(firstMobileLink).not.toBeVisible();
+});
+
+for (const path of ["/", "/drivers", "/fulfilment"]) {
+  test(`no horizontal overflow at 360px on ${path}`, async ({ page }) => {
+    await page.setViewportSize({ width: 360, height: 740 });
+    await page.goto(path);
+    const overflow = await page.evaluate(() => {
+      const el = document.scrollingElement!;
+      return { scrollWidth: el.scrollWidth, clientWidth: el.clientWidth };
+    });
+    expect(overflow.scrollWidth).toBeLessThanOrEqual(overflow.clientWidth + 1);
+  });
+}
