@@ -1,0 +1,42 @@
+@import "tailwindcss";
+@import "@fontsource-variable/archivo/wdth.css";
+@import "@fontsource-variable/hanken-grotesk";
+
+@theme {
+  --color-brand: oklch(0.48 0.16 247);
+  --color-brand-strong: oklch(0.36 0.14 247);
+  --color-signal: oklch(0.88 0.19 122);
+  --color-bg: oklch(1 0 0);
+  --color-surface: oklch(0.965 0.008 247);
+  --color-ink: oklch(0.22 0.02 247);
+  --color-ink-muted: oklch(0.45 0.02 247);
+  --font-display: "Archivo Variable", system-ui, sans-serif;
+  --font-body: "Hanken Grotesk Variable", system-ui, sans-serif;
+  --radius-card: 8px;
+}
+
+html {
+  font-family: var(--font-body);
+  color: var(--color-ink);
+  background: var(--color-bg);
+}
+
+h1, h2, h3 {
+  font-family: var(--font-display);
+  text-wrap: balance;
+}
+
+.display-expanded {
+  font-stretch: 125%;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+}
+
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+:focus-visible {
+  outline: 3px solid var(--color-brand);
+  outline-offset: 2px;
+}
