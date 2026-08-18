@@ -8,7 +8,7 @@ if (!reduced) {
     animate(
       heroItems,
       { opacity: [0, 1], transform: ["translateY(16px)", "translateY(0)"] },
-      { duration: 0.55, delay: stagger(0.12), easing: [0.25, 1, 0.5, 1] },
+      { duration: 0.55, delay: stagger(0.12), ease: [0.25, 1, 0.5, 1] },
     );
   }
 
@@ -20,7 +20,7 @@ if (!reduced) {
       (entries, observer) => {
         for (const entry of entries) {
           if (!entry.isIntersecting) continue;
-          animate(path, { strokeDashoffset: [length, 0] }, { duration: 1.4, easing: [0.25, 1, 0.5, 1] });
+          animate(path, { strokeDashoffset: [length, 0] }, { duration: 1.4, ease: [0.25, 1, 0.5, 1] });
           observer.disconnect();
         }
       },
