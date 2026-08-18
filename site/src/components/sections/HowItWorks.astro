@@ -1,0 +1,20 @@
+---
+import { site } from "../../content/site";
+import RouteLine from "../RouteLine.astro";
+---
+
+<section id="how-it-works" class="bg-surface py-20">
+  <div class="mx-auto max-w-6xl px-4">
+    <h2 class="display-expanded text-3xl md:text-4xl">{site.howItWorks.title}</h2>
+    <RouteLine class="mt-6 h-16 w-full text-brand" />
+    <ol class="mt-6 grid gap-8 md:grid-cols-4">
+      {site.howItWorks.steps.map((step, i) => (
+        <li>
+          <span class="display-expanded tabular text-2xl text-brand">{String(i + 1).padStart(2, "0")}</span>
+          <h3 class="mt-2 font-display text-lg font-bold">{step.name}</h3>
+          <p class="mt-1 text-ink">{step.detail}</p>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>

@@ -1,0 +1,14 @@
+---
+import { site } from "../../content/site";
+---
+
+<section class="border-b border-surface bg-bg">
+  <dl class="mx-auto grid max-w-6xl grid-cols-2 gap-8 px-4 py-10 md:grid-cols-4">
+    {site.proof.metrics.map((m) => (
+      <div>
+        <dd class="display-expanded tabular text-3xl text-brand md:text-4xl">{m.value}</dd>
+        <dt class="mt-1 text-sm text-ink">{m.label}</dt>
+      </div>
+    ))}
+  </dl>
+</section>

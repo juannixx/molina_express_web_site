@@ -1,0 +1,31 @@
+---
+import { site } from "../../content/site";
+---
+
+<section class="bg-brand text-white">
+  <div class="mx-auto grid max-w-6xl items-center gap-10 px-4 py-16 md:grid-cols-2 md:py-24">
+    <div>
+      <h1 data-hero-seq class="display-expanded text-[clamp(2rem,6vw,4.5rem)] leading-[1.05]">
+        {site.hero.title}
+      </h1>
+      <p data-hero-seq class="mt-5 max-w-[60ch] text-lg opacity-95">{site.hero.subtitle}</p>
+      <div data-hero-seq class="mt-8 flex flex-wrap gap-3">
+        <a href={site.hero.ctaPrimary.href} class="rounded-card bg-signal px-6 py-3 font-semibold text-ink">
+          {site.hero.ctaPrimary.label}
+        </a>
+        <a href={site.hero.ctaSecondary.href} class="rounded-card border border-white/60 px-6 py-3 font-semibold text-white">
+          {site.hero.ctaSecondary.label}
+        </a>
+      </div>
+    </div>
+    <img
+      data-hero-seq
+      src={site.hero.image.src}
+      alt={site.hero.image.alt}
+      width="1600"
+      height="1000"
+      class="rounded-card"
+      fetchpriority="high"
+    />
+  </div>
+</section>

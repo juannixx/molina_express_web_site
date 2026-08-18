@@ -1,8 +1,15 @@
 ---
 import Base from "../layouts/Base.astro";
+import Hero from "../components/sections/Hero.astro";
+import ProofBand from "../components/sections/ProofBand.astro";
+import Services from "../components/sections/Services.astro";
+import HowItWorks from "../components/sections/HowItWorks.astro";
 import { site } from "../content/site";
 ---
 
 <Base title={site.seo.home.title} description={site.seo.home.description}>
-  <h1 class="display-expanded p-8 text-4xl">Sections land in the next tasks.</h1>
+  <Hero />
+  <ProofBand />
+  <Services />
+  <HowItWorks />
 </Base>
