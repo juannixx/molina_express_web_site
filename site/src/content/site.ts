@@ -126,6 +126,13 @@ export const site = {
     logos: ["TODO_client_logo_list"],
   },
 
+  fulfilmentBand: {
+    title: "Need a warehouse, not just a courier?",
+    body: "Storage, pick and pack, returns and Amazon prep from our Ipswich warehouse. 126 pallet positions, capacity available now.",
+    ctaLabel: "See fulfilment",
+    ctaHref: "/fulfilment",
+  },
+
   sectors: {
     title: "Sectors we deliver for",
     items: ["E-commerce", "Pharmacy and health", "Food", "Documents", "Fashion"],

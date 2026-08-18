@@ -6,7 +6,7 @@ const year = new Date().getFullYear();
 <footer class="mt-24 bg-brand-strong text-white">
   <div class="mx-auto grid max-w-6xl gap-10 px-4 py-14 md:grid-cols-3">
     <div>
-      <p class="font-display display-expanded text-lg">Molina Express</p>
+      <p class="font-display display-expanded text-lg">{site.company.name}</p>
       <address class="mt-3 text-sm not-italic leading-relaxed opacity-90">
         {site.company.legalName}<br />
         {site.company.address.street}<br />
@@ -22,7 +22,7 @@ const year = new Date().getFullYear();
     <div>
       <p class="font-semibold">Contact</p>
       <ul class="mt-3 space-y-1 text-sm opacity-90">
-        <li><a class="underline" href={`mailto:${site.company.recruitingEmail}`}>{site.company.recruitingEmail}</a></li>
+        <li><a class="underline" href={`mailto:${site.company.email}`}>{site.company.email}</a></li>
         <li><a class="underline" href={site.company.whatsappUrl}>WhatsApp</a></li>
         <li><a class="underline" href="/drivers">Drive with us</a></li>
       </ul>
