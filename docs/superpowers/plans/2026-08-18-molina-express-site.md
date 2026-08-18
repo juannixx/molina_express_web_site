@@ -368,9 +368,16 @@ describe("site content", () => {
     expect(site.cases.items.length).toBeGreaterThanOrEqual(2);
   });
 
-  it("has two-step forms for quote and driver", () => {
+  it("has two-step forms for quote, driver and fulfilment", () => {
     expect(site.quoteForm.steps).toHaveLength(2);
     expect(site.driverForm.steps).toHaveLength(2);
+    expect(site.fulfilmentForm.steps).toHaveLength(2);
+  });
+
+  it("has the fulfilment vertical", () => {
+    expect(site.fulfilment.services.items).toHaveLength(9);
+    expect(site.fulfilment.capacity.points).toContain("126 installed pallet positions");
+    expect(site.fulfilment.audience.items.length).toBeGreaterThanOrEqual(4);
   });
 
   it("uses no banned copy words", () => {
@@ -421,7 +428,9 @@ export const site = {
     trackingUrl: "TODO_external_tracking_url",
     replyTimeHours: "TODO_reply_time_hours",
     address: {
-      street: "Russel House, Elton Business Park, Hadleigh Road",
+      // Divergência entre fontes: site atual diz "Russel House, Elton Business Park",
+      // docs GTM dizem "Elton Park Business Centre". Confirmar antes de publicar.
+      street: "TODO_confirm_street_address",
       city: "Ipswich",
       postcode: "IP2 0DD",
       country: "GB",
@@ -432,6 +441,7 @@ export const site = {
   nav: {
     links: [
       { label: "Services", href: "/#services" },
+      { label: "Fulfilment", href: "/fulfilment" },
       { label: "How it works", href: "/#how-it-works" },
       { label: "Drive with us", href: "/drivers" },
     ],
@@ -598,6 +608,82 @@ export const site = {
     submitLabel: "Send application",
   },
 
+  fulfilment: {
+    hero: {
+      title: "Fulfilment from Ipswich, run by people who deliver",
+      subtitle:
+        "Operator-led 3PL on the Ipswich-Felixstowe corridor. 126 installed pallet positions, live capacity now, and a team that already runs delivery routes every day.",
+      cta: { label: "Get a fulfilment quote", href: "#fulfilment-quote" },
+      image: {
+        src: "/images/hero-fulfilment.svg",
+        alt: "Racked pallet positions inside the Molina Fulfilment warehouse in Ipswich",
+        status: "TODO_replace_with_generated_photo",
+      },
+    },
+    services: {
+      title: "One warehouse, the whole operation",
+      items: [
+        { name: "Inbound receiving", detail: "Container and carton receiving, checked and put away the same day." },
+        { name: "Pallet and carton storage", detail: "Racked storage with live stock counts." },
+        { name: "Pick and pack", detail: "Single and multi-item orders picked to your packing spec." },
+        { name: "UK parcel dispatch", detail: "Daily carrier collections from the warehouse door." },
+        { name: "Returns", detail: "Received, inspected and back into stock with a report." },
+        { name: "Rework and kitting", detail: "Bundles, inserts and product kits built to order." },
+        { name: "Relabelling", detail: "Barcodes and compliance labels applied per unit." },
+        { name: "Amazon FBA prep", detail: "Carton prep and labels to Amazon inbound spec." },
+        { name: "B2B dispatch", detail: "Pallet and carton despatch to stores and wholesalers." },
+      ],
+    },
+    capacity: {
+      title: "East of England stockholding",
+      body: "The warehouse sits minutes from the A14 on the Ipswich-Felixstowe corridor, with 126 installed pallet positions ready now. Import through Felixstowe, hold stock with us, dispatch across the UK.",
+      points: ["126 installed pallet positions", "Ipswich-Felixstowe corridor", "Capacity available now"],
+    },
+    audience: {
+      title: "Built for",
+      items: [
+        "UK and overseas e-commerce brands",
+        "Importers landing stock at Felixstowe",
+        "Shopify, Amazon, eBay and TikTok Shop sellers",
+        "SMEs that need East of England stockholding",
+      ],
+    },
+  },
+
+  fulfilmentForm: {
+    title: "Get a fulfilment quote",
+    subtitle:
+      "We price your operation from three numbers: pallets held, monthly orders and items per order. Two quick steps.",
+    steps: [
+      {
+        title: "About you",
+        fields: [
+          { name: "name", label: "Your name", type: "text", required: true },
+          { name: "company", label: "Company", type: "text", required: true },
+          { name: "email", label: "Work email", type: "email", required: true },
+          { name: "phone", label: "Phone", type: "tel", required: true },
+        ],
+      },
+      {
+        title: "Your operation",
+        fields: [
+          { name: "pallets", label: "Average pallets held", type: "text", required: true },
+          { name: "orders_month", label: "Orders per month", type: "text", required: true },
+          { name: "items_per_order", label: "Average items per order", type: "text", required: true },
+          {
+            name: "channels",
+            label: "Main sales channel",
+            type: "select",
+            required: true,
+            options: ["Shopify", "Amazon", "eBay", "TikTok Shop", "B2B / wholesale", "Other"],
+          },
+          { name: "product_type", label: "Product type (e.g. apparel, beauty, homeware)", type: "text", required: false },
+        ],
+      },
+    ] as FormStep[],
+    submitLabel: "Request fulfilment quote",
+  },
+
   drivers: {
     hero: {
       title: "Drive with Molina Express",
@@ -656,6 +742,11 @@ export const site = {
       title: "Drive with Molina Express - Delivery driver openings",
       description:
         "Van, fuel, insurance and routes provided. Paid training and performance bonuses. Apply to deliver in Norfolk, Suffolk or Essex.",
+    },
+    fulfilment: {
+      title: "Molina Fulfilment - 3PL warehouse in Ipswich, Suffolk",
+      description:
+        "Operator-led fulfilment on the Ipswich-Felixstowe corridor. Receiving, storage, pick and pack, returns and Amazon FBA prep. 126 pallet positions, capacity available now.",
     },
     thanks: { title: "Thanks - Molina Express", description: "We received your message." },
     ogImage: "/images/og.jpg",
@@ -931,7 +1022,7 @@ Expected: FAIL nos dois arquivos novos.
 
 ```ts
 export interface LeadPayload {
-  kind: "quote" | "driver";
+  kind: "quote" | "driver" | "fulfilment";
   fields: Record<string, string>;
 }
 
@@ -1111,7 +1202,7 @@ Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>"
 ### Task 7: Slots de imagem e IMAGE-PROMPTS.md
 
 **Files:**
-- Create: `site/public/images/hero-operation.svg`, `site/public/images/tracking-mock.svg`, `site/public/images/hero-drivers.svg`, `site/IMAGE-PROMPTS.md`
+- Create: `site/public/images/hero-operation.svg`, `site/public/images/tracking-mock.svg`, `site/public/images/hero-drivers.svg`, `site/public/images/hero-fulfilment.svg`, `site/IMAGE-PROMPTS.md`
 
 **Interfaces:**
 - Consumes: paths de imagem definidos em `site.ts` (Task 3).
@@ -1130,7 +1221,7 @@ Mesmo conteúdo para os 3 arquivos, mudando apenas o texto. `site/public/images/
 </svg>
 ```
 
-Duplicar como `tracking-mock.svg` (texto "PLACEHOLDER: tracking-mock", viewBox 1200x900) e `hero-drivers.svg` (texto "PLACEHOLDER: hero-drivers", viewBox 1600x1000).
+Duplicar como `tracking-mock.svg` (texto "PLACEHOLDER: tracking-mock", viewBox 1200x900), `hero-drivers.svg` (texto "PLACEHOLDER: hero-drivers", viewBox 1600x1000) e `hero-fulfilment.svg` (texto "PLACEHOLDER: hero-fulfilment", viewBox 1600x1000).
 
 - [ ] **Step 2: Criar `site/IMAGE-PROMPTS.md`**
 
@@ -1157,7 +1248,12 @@ e remover o campo `status` correspondente.
 - Alt text: "Molina Express driver in uniform closing the rear door of a long-wheelbase van"
 - Prompt: "Documentary photograph, confident delivery driver in navy uniform closing the rear roller door of a white 3.5 tonne van, British residential street, daylight, hi-vis vest draped on shoulder, genuine work moment, natural skin tones, 50mm lens"
 
-## 4. og (Open Graph)
+## 4. hero-fulfilment
+- Path final: `public/images/hero-fulfilment.jpg` (1600x1000, JPG qualidade 80)
+- Alt text: "Racked pallet positions inside the Molina Fulfilment warehouse in Ipswich"
+- Prompt: "Documentary photograph inside a small clean UK fulfilment warehouse, blue steel pallet racking filled with shrink-wrapped pallets and labelled cartons, worker with handheld scanner picking an order, bright even industrial lighting, packing bench with tape and boxes in foreground, realistic working operation, 35mm"
+
+## 5. og (Open Graph)
 - Path final: `public/images/og.jpg` (1200x630, JPG)
 - Prompt: "Wide banner, white background, bold extra-wide dark blue headline 'Delivery across East Anglia' left-aligned, a cobalt route line with vertex dots crossing the composition, small green reflective accent, minimal, print-quality graphic design, no photo"
 
@@ -1700,7 +1796,7 @@ Renderiza os 2 passos server-side; o script DOM controla visibilidade/validaçã
 import type { FormStep } from "../content/site";
 
 interface Props {
-  kind: "quote" | "driver";
+  kind: "quote" | "driver" | "fulfilment";
   anchor: string;
   config: { title: string; subtitle: string; steps: readonly FormStep[]; submitLabel: string };
 }
@@ -1770,7 +1866,7 @@ import { leadProvider } from "../lib/leads";
 import type { FormStep } from "../content/site";
 
 for (const form of document.querySelectorAll<HTMLFormElement>("[data-lead-form]")) {
-  const kind = form.dataset.kind as "quote" | "driver";
+  const kind = form.dataset.kind as "quote" | "driver" | "fulfilment";
   const steps: FormStep[] = JSON.parse(form.querySelector("[data-lead-steps]")!.textContent!);
   const stepper = createStepper(steps, (fields) => leadProvider.submitLead({ kind, fields }));
 
@@ -2170,10 +2266,166 @@ Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>"
 
 ---
 
+### Task 16: Página /fulfilment e faixa na home
+
+**Files:**
+- Create: `site/src/pages/fulfilment.astro`, `site/src/components/sections/FulfilmentBand.astro`
+- Modify: `site/src/pages/index.astro`, `site/tests/e2e/smoke.spec.ts`
+
+**Interfaces:**
+- Consumes: `Base` (Task 8), `LeadForm` (Task 12), `Icon`/`RouteLine` (Task 6), `site.fulfilment`, `site.fulfilmentForm` (Task 3).
+- Produces: página `/fulfilment` completa; faixa na home após `<Sectors />` linkando para ela; smoke tests cobrindo a página e o formulário.
+
+- [ ] **Step 1: Implementar `site/src/pages/fulfilment.astro`**
+
+```astro
+---
+import Base from "../layouts/Base.astro";
+import LeadForm from "../components/LeadForm.astro";
+import Icon from "../components/Icon.astro";
+import RouteLine from "../components/RouteLine.astro";
+import { site } from "../content/site";
+const f = site.fulfilment;
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  serviceType: "Third-party logistics (3PL) and e-commerce fulfilment",
+  provider: { "@type": "Organization", name: site.company.legalName, url: site.company.url },
+  areaServed: "GB",
+  description: site.seo.fulfilment.description,
+};
+---
+
+<Base title={site.seo.fulfilment.title} description={site.seo.fulfilment.description} jsonLd={jsonLd}>
+  <section class="bg-brand text-white">
+    <div class="mx-auto grid max-w-6xl items-center gap-10 px-4 py-16 md:grid-cols-2 md:py-24">
+      <div>
+        <h1 data-hero-seq class="display-expanded text-[clamp(2rem,6vw,4.5rem)] leading-[1.05]">{f.hero.title}</h1>
+        <p data-hero-seq class="mt-5 max-w-[60ch] text-lg opacity-95">{f.hero.subtitle}</p>
+        <a data-hero-seq href={f.hero.cta.href} class="mt-8 inline-block rounded-card bg-signal px-6 py-3 font-semibold text-ink">
+          {f.hero.cta.label}
+        </a>
+      </div>
+      <img data-hero-seq src={f.hero.image.src} alt={f.hero.image.alt} width="1600" height="1000" class="rounded-card" fetchpriority="high" />
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-6xl px-4 py-20">
+    <h2 class="display-expanded text-3xl md:text-4xl">{f.services.title}</h2>
+    <dl class="mt-10 grid gap-x-10 gap-y-6 md:grid-cols-3">
+      {f.services.items.map((s) => (
+        <div class="border-t border-surface pt-4">
+          <dt class="font-display text-lg font-bold">{s.name}</dt>
+          <dd class="mt-1 text-ink">{s.detail}</dd>
+        </div>
+      ))}
+    </dl>
+  </section>
+
+  <section class="bg-surface py-20">
+    <div class="mx-auto max-w-6xl px-4">
+      <h2 class="display-expanded text-3xl md:text-4xl">{f.capacity.title}</h2>
+      <p class="mt-4 max-w-[65ch] text-lg text-ink">{f.capacity.body}</p>
+      <RouteLine class="mt-8 h-16 w-full text-brand" />
+      <ul class="mt-6 flex flex-wrap gap-x-10 gap-y-3">
+        {f.capacity.points.map((p) => (
+          <li class="display-expanded tabular border-b-2 border-signal pb-1 text-xl text-brand">{p}</li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-6xl px-4 py-20">
+    <h2 class="display-expanded text-3xl md:text-4xl">{f.audience.title}</h2>
+    <ul class="mt-8 grid gap-4 md:grid-cols-2">
+      {f.audience.items.map((item) => (
+        <li class="flex items-start gap-3">
+          <Icon name="map" class="mt-0.5 shrink-0 text-brand" />
+          <span class="text-lg text-ink">{item}</span>
+        </li>
+      ))}
+    </ul>
+  </section>
+
+  <LeadForm kind="fulfilment" anchor="fulfilment-quote" config={site.fulfilmentForm} />
+</Base>
+```
+
+- [ ] **Step 2: Implementar `site/src/components/sections/FulfilmentBand.astro`**
+
+```astro
+---
+import { site } from "../../content/site";
+---
+
+<section class="bg-brand-strong text-white">
+  <div class="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-6 px-4 py-14">
+    <div>
+      <h2 class="display-expanded text-2xl md:text-3xl">Need a warehouse, not just a courier?</h2>
+      <p class="mt-2 max-w-[60ch] opacity-95">
+        Storage, pick and pack, returns and Amazon prep from our Ipswich warehouse. 126 pallet positions, capacity available now.
+      </p>
+    </div>
+    <a href="/fulfilment" class="rounded-card bg-signal px-6 py-3 font-semibold text-ink">See fulfilment</a>
+  </div>
+</section>
+```
+
+- [ ] **Step 3: Adicionar ao `index.astro`** após `<Sectors />` (antes do `<LeadForm ... />`):
+
+```astro
+<FulfilmentBand />
+```
+
+(import no frontmatter.)
+
+- [ ] **Step 4: Estender `site/tests/e2e/smoke.spec.ts`**
+
+Trocar a lista de rotas por `["/", "/drivers", "/fulfilment", "/thanks"]` e acrescentar:
+
+```ts
+test("fulfilment form reaches /thanks", async ({ page }) => {
+  await page.goto("/fulfilment");
+  const form = page.locator('[data-lead-form][data-kind="fulfilment"]');
+  await form.scrollIntoViewIfNeeded();
+  await form.locator('[name="name"]').fill("Test Buyer");
+  await form.locator('[name="company"]').fill("Brand Co");
+  await form.locator('[name="email"]').fill("ops@example.com");
+  await form.locator('[name="phone"]').fill("07911123456");
+  await form.getByRole("button", { name: "Continue" }).click();
+  await form.locator('[name="pallets"]').fill("60");
+  await form.locator('[name="orders_month"]').fill("2000");
+  await form.locator('[name="items_per_order"]').fill("1.4");
+  await form.locator('[name="channels"]').selectOption("Shopify");
+  await form.getByRole("button", { name: "Request fulfilment quote" }).click();
+  await page.waitForURL("**/thanks");
+});
+```
+
+- [ ] **Step 5: Rodar tudo**
+
+```bash
+cd site && npm test && npm run test:e2e && npm run build && grep -c "Third-party logistics" dist/fulfilment/index.html
+```
+
+Expected: unit PASS, e2e PASS, build OK, grep retorna `1`.
+
+- [ ] **Step 6: Commit**
+
+```bash
+cd .. && git add site/src site/tests
+git commit -m "feat(site): pagina /fulfilment (vertical 3PL) e faixa na home
+
+Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>"
+```
+
+---
+
 ## Pós-plano (fora das tasks, requer o usuário)
 
 1. Usuário fornece a URL do repositório → `git remote add origin <url>` (ou mover `site/` para o novo repo), push da branch, abrir PR.
-2. Usuário gera as 4 imagens de `IMAGE-PROMPTS.md` e substitui os placeholders.
+2. Usuário gera as 5 imagens de `IMAGE-PROMPTS.md` e substitui os placeholders.
+2b. Usuário confirma o endereço correto (Russel House/Elton Business Park vs Elton Park Business Centre) e substitui `TODO_confirm_street_address`.
 3. Usuário fornece os dados reais dos `TODO_` (rodar `npm run check:placeholders` para a lista).
 4. Deploy no Railway com `npm run build:prod` como comando de build (o gate de placeholders passa a valer).
 ```

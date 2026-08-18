@@ -12,8 +12,13 @@ Fontes: `BLUEPRINT-SITE-MOLINA-EXPRESS.md` (benchmark HIVED/Zedify), `graphify-o
 | Idioma | Inglês |
 | Dados reais (números, cases, logos) | Placeholders marcados e centralizados; build de produção falha se sobrar placeholder |
 | Envio de formulários | Sem backend no lançamento: interface `LeadProvider` com implementação `NoopProvider`; e-mail/HubSpot entram depois como providers |
-| Estrutura | Abordagem A: LP única + `/drivers` (fase 1 do blueprint) |
+| Estrutura | Abordagem A: LP única + `/drivers` (fase 1 do blueprint) + `/fulfilment` (vertical 3PL, decisão de 18/08 com base nos docs de GTM) |
 | Imagens | Slots com SVG placeholder + `IMAGE-PROMPTS.md` com prompt descritivo por imagem; usuário gera as imagens em outra instância e substitui os arquivos |
+| Endereço | Divergência entre fontes ("Russel House, Elton Business Park" no site atual vs "Elton Park Business Centre" nos docs GTM): rua fica como `TODO_` até confirmação; cidade/postcode (Ipswich, IP2 0DD) são confirmados |
+
+### Fontes adicionais (18/08)
+
+`Molina_Fulfilment_Go_to_Market_UK.docx` e `Molina_Fulfilment_Playbook_Portugues_50_Alvos.docx`: a Molina lança vertical 3PL/fulfilment ("Molina Fulfilment") no galpão de Ipswich. Entram no site: posicionamento operator-led 3PL, 126 posições de pallet instaladas (número usado publicamente nos scripts de outreach do time), corredor Ipswich–Felixstowe, os 9 serviços de fulfilment, público-alvo (marcas e-commerce, importadores, sellers Shopify/Amazon/eBay/TikTok Shop) e os campos de qualificação de lead (pallets, pedidos/mês, itens por pedido, canais). NÃO entram no site: rate card e pisos de negociação, lista de 50 alvos e contatos, KPIs internos de 90 dias, checklist de compliance FHDDS.
 
 ## 2. Stack
 
@@ -36,7 +41,7 @@ Fontes: `BLUEPRINT-SITE-MOLINA-EXPRESS.md` (benchmark HIVED/Zedify), `graphify-o
 6. **Cases e clientes**: 2–3 cases com número no título + fila de logos. Tudo placeholder marcado.
 7. **Setores atendidos**: e-commerce, farmácia/saúde, alimentação, documentos, moda. Lista simples; viram páginas na fase 2.
 8. **Formulário de cotação em 2 passos**: passo 1 contato (nome, empresa, e-mail, telefone), passo 2 operação (volume/dia, cidade de coleta, como conheceu). Validação inline, teclado.
-9. **Rodapé**: contato, WhatsApp link direto, área de cobertura (Norfolk, Suffolk, Essex), links legais, redes, dados da empresa (Molina Express Ltd, Russel House, Elton Business Park, Hadleigh Road, Ipswich, IP2 0DD).
+9. **Rodapé**: contato, WhatsApp link direto, área de cobertura (Norfolk, Suffolk, Essex), links legais, redes, dados da empresa (Molina Express Ltd, rua como `TODO_` até confirmação do endereço, Ipswich, IP2 0DD).
 
 ### `/drivers` — recrutamento (conteúdo real do site atual, reescrito)
 
@@ -46,6 +51,17 @@ Fontes: `BLUEPRINT-SITE-MOLINA-EXPRESS.md` (benchmark HIVED/Zedify), `graphify-o
 - Benefícios reais: van 3.5t fornecida, sem custo de combustível/seguro, uniforme, parking seguro, treinamento pago, rotas preparadas, bônus por performance, posição self-employed com suporte de contadores.
 - Expectativas do parceiro (lista atual, reescrita).
 - Formulário de aplicação em 2 passos (contato, depois experiência/disponibilidade).
+
+### `/fulfilment` — vertical 3PL (fonte: docs GTM de 18/08)
+
+- Herói próprio: posicionamento "operator-led 3PL in Ipswich" com capacidade disponível agora; nunca "space for rent". CTA "Get a fulfilment quote".
+- Serviços (9): inbound receiving, pallet & carton storage, pick & pack, UK parcel dispatch, returns, rework & kitting, relabelling, Amazon FBA prep, B2B pallet/carton dispatch.
+- Capacidade e localização: 126 posições de pallet instaladas, corredor Ipswich–Felixstowe, East of England stockholding.
+- Para quem: marcas e-commerce UK e estrangeiras, importadores, sellers Shopify/Amazon/eBay/TikTok Shop, SMEs.
+- Formulário de cotação qualificado em 2 passos com os campos do GTM: passo 1 contato; passo 2 operação (pallets médios, pedidos/mês, itens por pedido, canais de venda, tipo de produto).
+- Home ganha uma faixa "Fulfilment" (seção própria após serviços) linkando para a página; nav ganha o link "Fulfilment".
+- `LeadPayload.kind` passa a `"quote" | "driver" | "fulfilment"`.
+- Slot de imagem adicional: herói fulfilment (foto do galpão/racking) em `IMAGE-PROMPTS.md`.
 
 ### `/thanks` — confirmação
 
@@ -65,7 +81,7 @@ Fontes: `BLUEPRINT-SITE-MOLINA-EXPRESS.md` (benchmark HIVED/Zedify), `graphify-o
 ## 5. Formulários e LeadProvider
 
 ```ts
-interface LeadPayload { kind: 'quote' | 'driver'; fields: Record<string, string>; }
+interface LeadPayload { kind: 'quote' | 'driver' | 'fulfilment'; fields: Record<string, string>; }
 interface LeadProvider { submitLead(p: LeadPayload): Promise<{ ok: boolean; error?: string }>; }
 ```
 
