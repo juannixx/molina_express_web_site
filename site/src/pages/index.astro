@@ -1,14 +1,8 @@
 ---
-import "../styles/global.css";
+import Base from "../layouts/Base.astro";
+import { site } from "../content/site";
 ---
 
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Molina Express</title>
-  </head>
-  <body>
-    <h1 class="display-expanded text-4xl text-brand">Molina Express</h1>
-  </body>
-</html>
+<Base title={site.seo.home.title} description={site.seo.home.description}>
+  <h1 class="display-expanded p-8 text-4xl">Sections land in the next tasks.</h1>
+</Base>
