@@ -9,9 +9,29 @@ import Cases from "../components/sections/Cases.astro";
 import Sectors from "../components/sections/Sectors.astro";
 import LeadForm from "../components/LeadForm.astro";
 import { site } from "../content/site";
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  name: site.company.legalName,
+  url: site.company.url,
+  email: site.company.recruitingEmail,
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: site.company.address.street,
+    addressLocality: site.company.address.city,
+    postalCode: site.company.address.postcode,
+    addressCountry: site.company.address.country,
+  },
+  areaServed: site.company.coverage,
+  makesOffer: site.services.items.map((s) => ({
+    "@type": "Offer",
+    itemOffered: { "@type": "Service", name: s.name, description: s.useCase },
+  })),
+};
 ---
 
-<Base title={site.seo.home.title} description={site.seo.home.description}>
+<Base title={site.seo.home.title} description={site.seo.home.description} jsonLd={jsonLd}>
   <Hero />
   <ProofBand />
   <Services />
