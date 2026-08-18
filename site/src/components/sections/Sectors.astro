@@ -1,0 +1,12 @@
+---
+import { site } from "../../content/site";
+---
+
+<section class="mx-auto max-w-6xl px-4 py-20">
+  <h2 class="display-expanded text-3xl md:text-4xl">{site.sectors.title}</h2>
+  <ul class="mt-8 flex flex-wrap gap-x-8 gap-y-3 text-lg font-medium">
+    {site.sectors.items.map((s) => (
+      <li class="border-b-2 border-signal pb-1">{s}</li>
+    ))}
+  </ul>
+</section>
