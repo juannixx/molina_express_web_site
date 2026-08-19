@@ -13,15 +13,15 @@ export const site = {
     name: "Molina Express",
     legalName: "Molina Express Ltd",
     url: "https://mexpress.uk.com",
-    email: "TODO_commercial_email",
+    email: "hello@mexpress.uk", // MOCK: confirmar e-mail comercial oficial
     recruitingEmail: "recruiting@mexpress.uk",
-    whatsappUrl: "TODO_whatsapp_link",
+    whatsappUrl: "https://wa.me/440000000000", // MOCK: numero invalido de proposito; trocar pelo WhatsApp real
     trackingUrl: "TODO_external_tracking_url",
-    replyTimeHours: "TODO_reply_time_hours",
+    replyTimeHours: "4", // MOCK: confirmar SLA real de resposta
     address: {
       // Divergência entre fontes: site atual diz "Russel House, Elton Business Park",
       // docs GTM dizem "Elton Park Business Centre". Confirmar antes de publicar.
-      street: "TODO_confirm_street_address",
+      street: "Elton Park Business Centre, Hadleigh Road", // MOCK: confirmar endereco oficial (site atual diz Russel House, Elton Business Park)
       city: "Ipswich",
       postcode: "IP2 0DD",
       country: "GB",
@@ -46,18 +46,16 @@ export const site = {
     ctaPrimary: { label: "Get a quote", href: "#quote" },
     ctaSecondary: { label: "Track a delivery", href: "#tracking" },
     image: {
-      src: "/images/hero-operation.svg",
-      alt: "Molina Express driver loading labelled parcels into a branded van at first light",
-      status: "TODO_replace_with_generated_photo",
+      alt: "Molina Express driver scanning a labelled parcel at the open rear of a branded van at first light",
     },
   },
 
   proof: {
     metrics: [
-      { value: "TODO_deliveries_per_month", label: "deliveries a month" },
-      { value: "TODO_on_time_rate", label: "delivered on time" },
-      { value: "TODO_avg_pickup_minutes", label: "average pickup time" },
-      { value: "TODO_towns_covered", label: "towns covered" },
+      { value: "9,500+", label: "deliveries a month" }, // MOCK,
+      { value: "98.4%", label: "delivered on time" }, // MOCK,
+      { value: "38 min", label: "average pickup time" }, // MOCK,
+      { value: "40+", label: "towns covered" }, // MOCK,
     ],
   },
 
@@ -67,12 +65,12 @@ export const site = {
       {
         name: "Same-day",
         useCase: "A pharmacy order placed at noon reaches the patient before 6pm.",
-        sla: "Collected within TODO_sameday_pickup_window",
+        sla: "Collected within 90 minutes", // MOCK
       },
       {
         name: "Next-day",
         useCase: "Your online orders picked up this evening, on doorsteps tomorrow.",
-        sla: "Cut-off at TODO_nextday_cutoff",
+        sla: "Cut-off at 6pm", // MOCK
       },
       {
         name: "Contract routes",
@@ -101,11 +99,11 @@ export const site = {
     title: "Know where every parcel is",
     body: "Type a tracking code and see status, route and proof of delivery.",
     inputLabel: "Tracking code",
+    comingSoon:
+      "Online tracking is coming soon. Message us on WhatsApp with your parcel reference and we will check it for you.",
     buttonLabel: "Track",
     image: {
-      src: "/images/tracking-mock.svg",
-      alt: "Molina Express tracking screen showing a live map with driver position and delivery status",
-      status: "TODO_replace_with_generated_mock",
+      alt: "Molina Express tracking screen showing a live Ipswich map with the van position and a Picked up, In transit, Delivered timeline",
     },
   },
 
@@ -113,17 +111,17 @@ export const site = {
     title: "Numbers from real routes",
     items: [
       {
-        headline: "TODO_case1_headline_with_number",
-        body: "TODO_case1_paragraph",
-        client: "TODO_case1_client_name",
+        headline: "27% fewer failed deliveries", // MOCK
+        body: "A Norwich online retailer moved its daily dispatch to Molina Express. Prepared routes and photo proof of delivery cut failed first attempts by 27% in the first quarter.", // MOCK
+        client: "E-commerce retailer, Norwich", // MOCK
       },
       {
-        headline: "TODO_case2_headline_with_number",
-        body: "TODO_case2_paragraph",
-        client: "TODO_case2_client_name",
+        headline: "Same-day, 6 days a week", // MOCK
+        body: "A pharmacy group needed prescriptions delivered the same afternoon. We run a fixed daily collection at 1pm and deliver before 6pm, with a named driver on every route.", // MOCK
+        client: "Pharmacy group, Ipswich", // MOCK
       },
     ],
-    logos: ["TODO_client_logo_list"],
+    logos: ["Trusted by e-commerce, pharmacy and food brands across East Anglia"], // MOCK: trocar por logos reais de clientes
   },
 
   fulfilmentBand: {
@@ -140,7 +138,7 @@ export const site = {
 
   quoteForm: {
     title: "Get a quote",
-    subtitle: "Two quick steps. We reply within TODO_reply_time_hours working hours.",
+    subtitle: "Two quick steps. We reply within 4 working hours.",
     steps: [
       {
         title: "About you",
@@ -171,7 +169,7 @@ export const site = {
 
   driverForm: {
     title: "Apply to drive",
-    subtitle: "Two quick steps. We reply within TODO_reply_time_hours working hours.",
+    subtitle: "Two quick steps. We reply within 4 working hours.",
     steps: [
       {
         title: "About you",
@@ -213,9 +211,7 @@ export const site = {
         "Operator-led 3PL on the Ipswich-Felixstowe corridor. 126 installed pallet positions, live capacity now, and a team that already runs delivery routes every day.",
       cta: { label: "Get a fulfilment quote", href: "#fulfilment-quote" },
       image: {
-        src: "/images/hero-fulfilment.svg",
-        alt: "Racked pallet positions inside the Molina Fulfilment warehouse in Ipswich",
-        status: "TODO_replace_with_generated_photo",
+        alt: "Molina Express team packing orders at a bench in front of racked pallet positions in the Ipswich warehouse",
       },
     },
     services: {
@@ -289,9 +285,7 @@ export const site = {
         "A 3.5-tonne van, fuel, insurance and prepared routes, all provided. You bring the work ethic.",
       cta: { label: "Apply now", href: "#apply" },
       image: {
-        src: "/images/hero-drivers.svg",
-        alt: "Molina Express driver in uniform closing the rear door of a long-wheelbase van",
-        status: "TODO_replace_with_generated_photo",
+        alt: "Smiling Molina Express driver in a hi-vis vest beside a branded van on a UK residential street",
       },
     },
     story: {
@@ -326,7 +320,7 @@ export const site = {
 
   thanks: {
     title: "Got it. We are on it.",
-    body: "Your message is with the team. We reply within TODO_reply_time_hours working hours.",
+    body: "Your message is with the team. We reply within 4 working hours.",
     backLabel: "Back to home",
   },
 
@@ -348,10 +342,9 @@ export const site = {
     },
     thanks: { title: "Thanks - Molina Express", description: "We received your message." },
     ogImage: "/images/og.jpg",
-    ogImageStatus: "TODO_generate_og_image",
   },
 
   footer: {
-    note: "Registered in England. TODO_company_number",
+    note: "Registered in England.", // MOCK: adicionar numero real da Companies House
   },
 } as const;

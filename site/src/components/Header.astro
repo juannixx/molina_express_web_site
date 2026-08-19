@@ -1,19 +1,24 @@
 ---
+import { withBase } from "../lib/url";
 import { site } from "../content/site";
+import { Image } from "astro:assets";
+import logoColor from "../assets/images/logo-color.png";
 ---
 
 <header class="sticky top-0 z-40 border-b border-surface bg-bg/95 backdrop-blur-sm">
   <div class="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3">
-    <a href="/" class="font-display display-expanded text-xl text-brand">{site.company.name}</a>
+    <a href={withBase("/")} class="flex items-center">
+      <Image src={logoColor} alt={site.company.name} height={30} densities={[1, 2]} class="h-[30px] w-auto" loading="eager" />
+    </a>
     <nav aria-label="Main">
       <details class="group relative md:hidden">
-        <summary class="cursor-pointer list-none rounded-card px-3 py-2 text-sm font-semibold">Menu</summary>
+        <summary class="cursor-pointer list-none rounded-card px-4 py-3 text-sm font-semibold">Menu</summary>
         <ul class="absolute right-0 mt-2 w-52 rounded-card border border-surface bg-bg p-2 shadow-lg">
           {site.nav.links.map((l) => (
-            <li><a class="block rounded-card px-3 py-2 hover:bg-surface" href={l.href}>{l.label}</a></li>
+            <li><a class="block rounded-card px-3 py-3 hover:bg-surface" href={withBase(l.href)}>{l.label}</a></li>
           ))}
           <li>
-            <a class="mt-1 block rounded-card bg-brand px-3 py-2 text-center font-semibold text-white" href={site.nav.cta.href}>
+            <a class="mt-1 block rounded-card bg-brand px-3 py-3 text-center font-semibold text-white" href={withBase(site.nav.cta.href)}>
               {site.nav.cta.label}
             </a>
           </li>
@@ -21,10 +26,10 @@ import { site } from "../content/site";
       </details>
       <ul class="hidden items-center gap-6 md:flex">
         {site.nav.links.map((l) => (
-          <li><a class="text-sm font-medium hover:text-brand" href={l.href}>{l.label}</a></li>
+          <li><a class="text-sm font-medium hover:text-brand" href={withBase(l.href)}>{l.label}</a></li>
         ))}
         <li>
-          <a class="rounded-card bg-brand px-4 py-2 text-sm font-semibold text-white hover:bg-brand-strong" href={site.nav.cta.href}>
+          <a class="rounded-card bg-brand px-4 py-2 text-sm font-semibold text-white hover:bg-brand-strong" href={withBase(site.nav.cta.href)}>
             {site.nav.cta.label}
           </a>
         </li>

@@ -21,4 +21,13 @@ describe("scanText", () => {
   it("catches a bare TODO_ marker with nothing after it", () => {
     expect(scanText('a: "TODO_"')).toEqual([{ line: 1, match: "TODO_" }]);
   });
+
+  it("catches MOCK comment markers", () => {
+    const text = 'value: "9,500+", // MOCK: substituir por dado real\nreal: "ok"';
+    expect(scanText(text)).toEqual([{ line: 1, match: "// MOCK" }]);
+  });
+
+  it("does not match the word mock outside a comment marker", () => {
+    expect(scanText('alt: "a mockup of the tracking screen"')).toEqual([]);
+  });
 });

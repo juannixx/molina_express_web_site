@@ -57,7 +57,7 @@ for (const form of document.querySelectorAll<HTMLFormElement>("[data-lead-form]"
     e.preventDefault();
     await stepper.submit();
     render();
-    if (stepper.getState().status === "done") window.location.href = "/thanks";
+    if (stepper.getState().status === "done") window.location.href = `${import.meta.env.BASE_URL.replace(/\/+$/, "")}/thanks`;
     else focusFirstError();
   });
 }

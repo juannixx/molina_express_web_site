@@ -1,4 +1,5 @@
 ---
+import { withBase } from "../lib/url";
 import "../styles/global.css";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
@@ -13,6 +14,8 @@ const ogImage = new URL(site.seo.ogImage, site.company.url).href;
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/png" href={withBase("/favicon.png")} />
+    <link rel="apple-touch-icon" href={withBase("/apple-touch-icon.png")} />
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={new URL(Astro.url.pathname, site.company.url).href} />
@@ -20,7 +23,7 @@ const ogImage = new URL(site.seo.ogImage, site.company.url).href;
     <meta property="og:description" content={description} />
     <meta property="og:image" content={ogImage} />
     <meta property="og:type" content="website" />
-    <link rel="sitemap" href="/sitemap-index.xml" />
+    <link rel="sitemap" href={withBase("/sitemap-index.xml")} />
     {jsonLd && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
     <!-- GA4: descomentar e preencher o ID quando houver conta
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXX"></script>

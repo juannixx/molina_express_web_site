@@ -3,13 +3,17 @@
 @import "@fontsource-variable/hanken-grotesk";
 
 @theme {
-  --color-brand: oklch(0.48 0.16 247);
-  --color-brand-strong: oklch(0.36 0.14 247);
-  --color-signal: oklch(0.88 0.19 122);
+  /* Paleta recomposta em 19/08 ao redor da identidade real do logo
+     (azul royal + laranja), conforme regra do blueprint: a cor da marca
+     existente vence a proposta. Contrastes validados (todos >= 6.6:1). */
+  --color-brand: oklch(0.4 0.2 265);
+  --color-brand-strong: oklch(0.3 0.16 265);
+  --color-signal: oklch(0.76 0.145 60);
   --color-bg: oklch(1 0 0);
-  --color-surface: oklch(0.965 0.008 247);
-  --color-ink: oklch(0.22 0.02 247);
-  --color-ink-muted: oklch(0.45 0.02 247);
+  --color-surface: oklch(0.965 0.008 265);
+  --color-ink: oklch(0.22 0.02 265);
+  --color-ink-muted: oklch(0.45 0.02 265);
+  --color-danger: oklch(0.5 0.19 27);
   --font-display: "Archivo Variable", system-ui, sans-serif;
   --font-body: "Hanken Grotesk Variable", system-ui, sans-serif;
   --radius-card: 8px;

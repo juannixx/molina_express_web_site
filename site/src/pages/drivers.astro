@@ -3,6 +3,8 @@ import Base from "../layouts/Base.astro";
 import LeadForm from "../components/LeadForm.astro";
 import Icon from "../components/Icon.astro";
 import { site } from "../content/site";
+import { Image } from "astro:assets";
+import heroDrivers from "../assets/images/hero-drivers.jpg";
 const d = site.drivers;
 const jsonLd = {
   "@context": "https://schema.org",
@@ -28,7 +30,7 @@ const jsonLd = {
           {d.hero.cta.label}
         </a>
       </div>
-      <img data-hero-seq src={d.hero.image.src} alt={d.hero.image.alt} width="1600" height="1000" class="rounded-card" fetchpriority="high" />
+      <Image data-hero-seq src={heroDrivers} alt={d.hero.image.alt} widths={[480, 800, 1324]} sizes="(min-width: 768px) 45vw, 92vw" format="webp" quality={75} class="rounded-card" fetchpriority="high" loading="eager" />
     </div>
   </section>
 
