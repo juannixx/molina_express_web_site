@@ -46,9 +46,8 @@ export const site = {
     ctaPrimary: { label: "Get a quote", href: "#quote" },
     ctaSecondary: { label: "Track a delivery", href: "#tracking" },
     image: {
-      src: "/images/hero-operation.svg",
-      alt: "Molina Express driver loading labelled parcels into a branded van at first light",
-      status: "TODO_replace_with_generated_photo",
+      src: "/images/hero-operation.jpg",
+      alt: "Molina Express driver scanning a labelled parcel at the open rear of a branded van at first light",
     },
   },
 
@@ -103,9 +102,8 @@ export const site = {
     inputLabel: "Tracking code",
     buttonLabel: "Track",
     image: {
-      src: "/images/tracking-mock.svg",
-      alt: "Molina Express tracking screen showing a live map with driver position and delivery status",
-      status: "TODO_replace_with_generated_mock",
+      src: "/images/tracking-mock.jpg",
+      alt: "Molina Express tracking screen showing a live Ipswich map with the van position and a Picked up, In transit, Delivered timeline",
     },
   },
 
@@ -213,9 +211,8 @@ export const site = {
         "Operator-led 3PL on the Ipswich-Felixstowe corridor. 126 installed pallet positions, live capacity now, and a team that already runs delivery routes every day.",
       cta: { label: "Get a fulfilment quote", href: "#fulfilment-quote" },
       image: {
-        src: "/images/hero-fulfilment.svg",
-        alt: "Racked pallet positions inside the Molina Fulfilment warehouse in Ipswich",
-        status: "TODO_replace_with_generated_photo",
+        src: "/images/hero-fulfilment.jpg",
+        alt: "Molina Express team packing orders at a bench in front of racked pallet positions in the Ipswich warehouse",
       },
     },
     services: {
@@ -289,9 +286,8 @@ export const site = {
         "A 3.5-tonne van, fuel, insurance and prepared routes, all provided. You bring the work ethic.",
       cta: { label: "Apply now", href: "#apply" },
       image: {
-        src: "/images/hero-drivers.svg",
-        alt: "Molina Express driver in uniform closing the rear door of a long-wheelbase van",
-        status: "TODO_replace_with_generated_photo",
+        src: "/images/hero-drivers.jpg",
+        alt: "Smiling Molina Express driver in a hi-vis vest beside a branded van on a UK residential street",
       },
     },
     story: {
@@ -348,7 +344,6 @@ export const site = {
     },
     thanks: { title: "Thanks - Molina Express", description: "We received your message." },
     ogImage: "/images/og.jpg",
-    ogImageStatus: "TODO_generate_og_image",
   },
 
   footer: {

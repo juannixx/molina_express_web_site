@@ -1,6 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" width="1200" height="900">
-  <rect width="1200" height="900" fill="oklch(0.965 0.008 247)"/>
-  <rect x="24" y="24" width="1152" height="852" fill="none" stroke="oklch(0.48 0.16 247)" stroke-width="4" stroke-dasharray="16 12"/>
-  <text x="600" y="420" text-anchor="middle" font-family="system-ui" font-size="56" fill="oklch(0.22 0.02 247)">PLACEHOLDER: tracking-mock</text>
-  <text x="600" y="500" text-anchor="middle" font-family="system-ui" font-size="32" fill="oklch(0.45 0.02 247)">See IMAGE-PROMPTS.md - replace before launch</text>
-</svg>
