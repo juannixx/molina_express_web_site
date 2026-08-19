@@ -15,7 +15,7 @@ import logoColor from "../assets/images/logo-color.png";
         <summary class="cursor-pointer list-none rounded-card px-4 py-3 text-sm font-semibold">Menu</summary>
         <ul class="absolute right-0 mt-2 w-52 rounded-card border border-surface bg-bg p-2 shadow-lg">
           {site.nav.links.map((l) => (
-            <li><a class="block rounded-card px-3 py-3 hover:bg-surface" href={withBase(l.href)}>{l.label}</a></li>
+            <li><a class="block rounded-card px-3 py-3 transition-colors duration-200 hover:bg-surface" href={withBase(l.href)}>{l.label}</a></li>
           ))}
           <li>
             <a class="mt-1 block rounded-card bg-brand px-3 py-3 text-center font-semibold text-white" href={withBase(site.nav.cta.href)}>
@@ -26,10 +26,10 @@ import logoColor from "../assets/images/logo-color.png";
       </details>
       <ul class="hidden items-center gap-6 md:flex">
         {site.nav.links.map((l) => (
-          <li><a class="text-sm font-medium hover:text-brand" href={withBase(l.href)}>{l.label}</a></li>
+          <li><a class="text-sm font-medium transition-colors duration-200 hover:text-brand" href={withBase(l.href)}>{l.label}</a></li>
         ))}
         <li>
-          <a class="rounded-card bg-brand px-4 py-2 text-sm font-semibold text-white hover:bg-brand-strong" href={withBase(site.nav.cta.href)}>
+          <a class="rounded-card bg-brand px-4 py-2 text-sm font-semibold text-white transition-colors duration-200 hover:bg-brand-strong" href={withBase(site.nav.cta.href)}>
             {site.nav.cta.label}
           </a>
         </li>
@@ -37,3 +37,12 @@ import logoColor from "../assets/images/logo-color.png";
     </nav>
   </div>
 </header>
+
+<script>
+  // fecha o menu mobile ao navegar por um link (details não fecha sozinho)
+  for (const details of document.querySelectorAll<HTMLDetailsElement>("header details")) {
+    details.addEventListener("click", (e) => {
+      if ((e.target as HTMLElement).closest("a")) details.open = false;
+    });
+  }
+</script>

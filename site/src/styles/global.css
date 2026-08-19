@@ -9,6 +9,7 @@
   --color-brand: oklch(0.4 0.2 265);
   --color-brand-strong: oklch(0.3 0.16 265);
   --color-signal: oklch(0.76 0.145 60);
+  --color-signal-strong: oklch(0.68 0.15 55);
   --color-bg: oklch(1 0 0);
   --color-surface: oklch(0.965 0.008 265);
   --color-ink: oklch(0.22 0.02 265);
@@ -43,4 +44,18 @@ h1, h2, h3 {
 :focus-visible {
   outline: 3px solid var(--color-brand);
   outline-offset: 2px;
+}
+
+/* âncoras internas não podem parar atrás do header sticky */
+[id] {
+  scroll-margin-top: 5rem;
+}
+
+::selection {
+  background: var(--color-brand);
+  color: white;
+}
+
+html {
+  accent-color: var(--color-brand);
 }
