@@ -91,7 +91,7 @@ interface LeadProvider { submitLead(p: LeadPayload): Promise<{ ok: boolean; erro
 
 ## 6. Design system
 
-- Tokens (blueprint §6): `--brand` oklch(0.48 0.16 247), `--brand-strong` oklch(0.36 0.14 247), `--signal` oklch(0.88 0.19 122) máx. 10% de superfície, `--bg` branco puro, `--surface` oklch(0.965 0.008 247), `--ink` oklch(0.22 0.02 247), `--ink-muted` oklch(0.45 0.02 247) nunca em corpo longo.
+- Tokens (recompostos em 19/08 ao redor da identidade real do logo, azul royal + laranja, conforme a regra do blueprint §6 de que a cor de marca existente vence a proposta): `--brand` oklch(0.4 0.2 265), `--brand-strong` oklch(0.3 0.16 265), `--signal` oklch(0.76 0.145 60) (laranja do logo, máx. 10% de superfície), `--bg` branco puro, `--surface` oklch(0.965 0.008 265), `--ink` oklch(0.22 0.02 265), `--ink-muted` oklch(0.45 0.02 265) nunca em corpo longo, `--danger` oklch(0.5 0.19 27) para erros de formulário. Contrastes validados ≥ 6.6:1 em todos os pares de texto.
 - Escala tipográfica modular ≥ 1.25, `clamp()` com teto 6rem, `letter-spacing` display ≥ -0.04em, `text-wrap: balance` em headings, corpo 65–75ch.
 - Iconografia autoral: SVGs de traço 1.5–2px (rota, baú, etiqueta, cronômetro, mapa), inline.
 - Motivo gráfico: **linha de rota** (traço com vértices) costurando seções, revelada no scroll.

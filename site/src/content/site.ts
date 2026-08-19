@@ -46,7 +46,6 @@ export const site = {
     ctaPrimary: { label: "Get a quote", href: "#quote" },
     ctaSecondary: { label: "Track a delivery", href: "#tracking" },
     image: {
-      src: "/images/hero-operation.jpg",
       alt: "Molina Express driver scanning a labelled parcel at the open rear of a branded van at first light",
     },
   },
@@ -100,9 +99,10 @@ export const site = {
     title: "Know where every parcel is",
     body: "Type a tracking code and see status, route and proof of delivery.",
     inputLabel: "Tracking code",
+    comingSoon:
+      "Online tracking is coming soon. Message us on WhatsApp with your parcel reference and we will check it for you.",
     buttonLabel: "Track",
     image: {
-      src: "/images/tracking-mock.jpg",
       alt: "Molina Express tracking screen showing a live Ipswich map with the van position and a Picked up, In transit, Delivered timeline",
     },
   },
@@ -211,7 +211,6 @@ export const site = {
         "Operator-led 3PL on the Ipswich-Felixstowe corridor. 126 installed pallet positions, live capacity now, and a team that already runs delivery routes every day.",
       cta: { label: "Get a fulfilment quote", href: "#fulfilment-quote" },
       image: {
-        src: "/images/hero-fulfilment.jpg",
         alt: "Molina Express team packing orders at a bench in front of racked pallet positions in the Ipswich warehouse",
       },
     },
@@ -286,7 +285,6 @@ export const site = {
         "A 3.5-tonne van, fuel, insurance and prepared routes, all provided. You bring the work ethic.",
       cta: { label: "Apply now", href: "#apply" },
       image: {
-        src: "/images/hero-drivers.jpg",
         alt: "Smiling Molina Express driver in a hi-vis vest beside a branded van on a UK residential street",
       },
     },

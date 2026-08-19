@@ -1,10 +1,11 @@
 ---
-import { withBase } from "../lib/url";
 import Base from "../layouts/Base.astro";
 import LeadForm from "../components/LeadForm.astro";
 import Icon from "../components/Icon.astro";
 import RouteLine from "../components/RouteLine.astro";
 import { site } from "../content/site";
+import { Image } from "astro:assets";
+import heroFulfilment from "../assets/images/hero-fulfilment.jpg";
 const f = site.fulfilment;
 const jsonLd = {
   "@context": "https://schema.org",
@@ -26,7 +27,7 @@ const jsonLd = {
           {f.hero.cta.label}
         </a>
       </div>
-      <img data-hero-seq src={withBase(f.hero.image.src)} alt={f.hero.image.alt} width="1600" height="900" class="rounded-card" fetchpriority="high" />
+      <Image data-hero-seq src={heroFulfilment} alt={f.hero.image.alt} widths={[480, 800, 1600]} sizes="(min-width: 768px) 45vw, 92vw" format="webp" quality={75} class="rounded-card" fetchpriority="high" loading="eager" />
     </div>
   </section>
 

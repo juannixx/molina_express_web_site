@@ -1,6 +1,7 @@
 ---
-import { withBase } from "../../lib/url";
 import { site } from "../../content/site";
+import { Image } from "astro:assets";
+import heroImage from "../../assets/images/hero-operation.jpg";
 ---
 
 <section class="bg-brand text-white">
@@ -19,14 +20,17 @@ import { site } from "../../content/site";
         </a>
       </div>
     </div>
-    <img
+    <Image
       data-hero-seq
-      src={withBase(site.hero.image.src)}
+      src={heroImage}
       alt={site.hero.image.alt}
-      width="1600"
-      height="900"
+      widths={[480, 800, 1200, 1600]}
+      sizes="(min-width: 768px) 45vw, 92vw"
+      format="webp"
+      quality={75}
       class="rounded-card"
       fetchpriority="high"
+      loading="eager"
     />
   </div>
 </section>

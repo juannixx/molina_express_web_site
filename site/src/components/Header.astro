@@ -8,13 +8,13 @@ import { site } from "../content/site";
     <a href={withBase("/")} class="font-display display-expanded text-xl text-brand">{site.company.name}</a>
     <nav aria-label="Main">
       <details class="group relative md:hidden">
-        <summary class="cursor-pointer list-none rounded-card px-3 py-2 text-sm font-semibold">Menu</summary>
+        <summary class="cursor-pointer list-none rounded-card px-4 py-3 text-sm font-semibold">Menu</summary>
         <ul class="absolute right-0 mt-2 w-52 rounded-card border border-surface bg-bg p-2 shadow-lg">
           {site.nav.links.map((l) => (
-            <li><a class="block rounded-card px-3 py-2 hover:bg-surface" href={withBase(l.href)}>{l.label}</a></li>
+            <li><a class="block rounded-card px-3 py-3 hover:bg-surface" href={withBase(l.href)}>{l.label}</a></li>
           ))}
           <li>
-            <a class="mt-1 block rounded-card bg-brand px-3 py-2 text-center font-semibold text-white" href={withBase(site.nav.cta.href)}>
+            <a class="mt-1 block rounded-card bg-brand px-3 py-3 text-center font-semibold text-white" href={withBase(site.nav.cta.href)}>
               {site.nav.cta.label}
             </a>
           </li>

@@ -14,12 +14,13 @@ if (!reduced) {
 
   for (const path of document.querySelectorAll<SVGPathElement>("[data-route-line]")) {
     const length = path.getTotalLength();
-    path.style.strokeDasharray = String(length);
-    path.style.strokeDashoffset = String(length);
+    // O traço permanece visível por padrão; só é ocultado no instante em que
+    // a animação de desenho começa (headless/observer ausente => linha inteira).
     new IntersectionObserver(
       (entries, observer) => {
         for (const entry of entries) {
           if (!entry.isIntersecting) continue;
+          path.style.strokeDasharray = String(length);
           animate(path, { strokeDashoffset: [length, 0] }, { duration: 1.4, ease: [0.25, 1, 0.5, 1] });
           observer.disconnect();
         }
