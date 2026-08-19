@@ -12,10 +12,10 @@ import heroImage from "../../assets/images/hero-operation.jpg";
       </h1>
       <p data-hero-seq class="mt-5 max-w-[60ch] text-lg opacity-95">{site.hero.subtitle}</p>
       <div data-hero-seq class="mt-8 flex flex-wrap gap-3">
-        <a href={site.hero.ctaPrimary.href} class="rounded-card bg-signal px-6 py-3 font-semibold text-ink">
+        <a href={site.hero.ctaPrimary.href} class="rounded-card bg-signal px-6 py-3 font-semibold text-ink transition-colors duration-200 hover:bg-signal-strong">
           {site.hero.ctaPrimary.label}
         </a>
-        <a href={site.hero.ctaSecondary.href} class="rounded-card border border-white/60 px-6 py-3 font-semibold text-white">
+        <a href={site.hero.ctaSecondary.href} class="rounded-card border border-white/60 px-6 py-3 font-semibold text-white transition-colors duration-200 hover:bg-white/10">
           {site.hero.ctaSecondary.label}
         </a>
       </div>

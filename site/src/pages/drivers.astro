@@ -26,7 +26,7 @@ const jsonLd = {
       <div>
         <h1 data-hero-seq class="display-expanded text-[clamp(2rem,6vw,4.5rem)] leading-[1.05]">{d.hero.title}</h1>
         <p data-hero-seq class="mt-5 max-w-[60ch] text-lg opacity-95">{d.hero.subtitle}</p>
-        <a data-hero-seq href={d.hero.cta.href} class="mt-8 inline-block rounded-card bg-signal px-6 py-3 font-semibold text-ink">
+        <a data-hero-seq href={d.hero.cta.href} class="mt-8 inline-block rounded-card bg-signal px-6 py-3 font-semibold text-ink transition-colors duration-200 hover:bg-signal-strong">
           {d.hero.cta.label}
         </a>
       </div>

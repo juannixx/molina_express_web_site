@@ -50,9 +50,9 @@ const { kind, anchor, config } = Astro.props;
       ))}
 
       <div class="mt-6 flex gap-3">
-        <button type="button" data-back class="hidden rounded-card border border-ink-muted px-5 py-3 font-semibold">Back</button>
-        <button type="button" data-next class="rounded-card bg-brand px-5 py-3 font-semibold text-white hover:bg-brand-strong">Continue</button>
-        <button type="submit" data-submit class="hidden rounded-card bg-brand px-5 py-3 font-semibold text-white hover:bg-brand-strong">
+        <button type="button" data-back class="hidden rounded-card border border-ink-muted px-5 py-3 font-semibold transition-colors duration-200 hover:bg-surface">Back</button>
+        <button type="button" data-next class="rounded-card bg-brand px-5 py-3 font-semibold text-white transition-colors duration-200 hover:bg-brand-strong">Continue</button>
+        <button type="submit" data-submit class="hidden rounded-card bg-brand px-5 py-3 font-semibold text-white transition-colors duration-200 hover:bg-brand-strong disabled:opacity-60">
           {config.submitLabel}
         </button>
       </div>
