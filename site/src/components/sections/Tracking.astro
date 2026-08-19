@@ -1,4 +1,5 @@
 ---
+import { withBase } from "../../lib/url";
 import { site } from "../../content/site";
 ---
 
@@ -21,6 +22,6 @@ import { site } from "../../content/site";
         </button>
       </form>
     </div>
-    <img src={site.tracking.image.src} alt={site.tracking.image.alt} width="1200" height="900" class="rounded-card border border-surface" loading="lazy" />
+    <img src={withBase(site.tracking.image.src)} alt={site.tracking.image.alt} width="1200" height="900" class="rounded-card border border-surface" loading="lazy" />
   </div>
 </section>
