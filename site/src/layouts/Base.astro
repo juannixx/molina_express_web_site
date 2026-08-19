@@ -14,6 +14,8 @@ const ogImage = new URL(site.seo.ogImage, site.company.url).href;
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/png" href={withBase("/favicon.png")} />
+    <link rel="apple-touch-icon" href={withBase("/apple-touch-icon.png")} />
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={new URL(Astro.url.pathname, site.company.url).href} />
